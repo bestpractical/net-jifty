@@ -195,7 +195,7 @@ has model_specs => (
     is            => 'rw',
     isa           => 'HashRef[HashRef]',
     default       => sub { {} },
-    documentation => "The model for action specifications",
+    documentation => "The cache for model specifications",
 );
 
 =head2 BUILD
