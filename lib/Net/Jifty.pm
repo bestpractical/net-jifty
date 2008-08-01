@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 package Net::Jifty;
+
+our $VERSION = '0.07';
+
 use Moose;
 
 use LWP::UserAgent;
@@ -20,14 +23,6 @@ use Email::Address;
 =head1 NAME
 
 Net::Jifty - interface to online Jifty applications
-
-=head1 VERSION
-
-Version 0.07 released ???
-
-=cut
-
-our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
