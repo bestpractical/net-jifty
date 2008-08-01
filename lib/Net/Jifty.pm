@@ -15,7 +15,6 @@ use Fcntl qw(:mode);
 use Cwd;
 use Path::Class;
 
-use DateTime;
 use Email::Address;
 
 =head1 NAME
@@ -662,6 +661,7 @@ sub load_date {
     my ($y, $m, $d) = $ymd =~ /^(\d\d\d\d)-(\d\d)-(\d\d)(?: 00:00:00)?$/
         or confess "Invalid date passed to load_date: $ymd. Expected yyyy-mm-dd.";
 
+    require DateTime;
     return DateTime->new(
         time_zone => 'floating',
         year      => $y,
