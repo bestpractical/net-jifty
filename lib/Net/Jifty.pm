@@ -680,7 +680,78 @@ scripts. For example, passing C<< use_config => 1 >> to C<new> will look at
 the config file for the username and password (or SID) of the user. If neither
 is available, it will prompt the user for them.
 
-=head2 BUILD
+=head1 METHODS
+
+=head2 CRUD - create, read, update and delete.
+
+=head3 create MODEL, FIELDS
+
+Create a new object of type C<MODEL> with the C<FIELDS> set.
+
+=head3 read MODEL, KEY => VALUE
+
+Find some C<MODEL> where C<KEY> is C<VALUE> and return it.
+
+=head3 update MODEL, KEY => VALUE, FIELDS
+
+Find some C<MODEL> where C<KEY> is C<VALUE> and set C<FIELDS> on it.
+
+=head3 delete MODEL, KEY => VALUE
+
+Find some C<MODEL> where C<KEY> is C<VALUE> and delete it.
+
+=head2 Other actions
+
+=head3 search MODEL, FIELDS[, OUTCOLUMN]
+
+Searches for all objects of type C<MODEL> that satisfy C<FIELDS>. The optional
+C<OUTCOLUMN> defines the output column, in case you don't want the entire
+records.
+
+=head3 act ACTION, ARGS
+
+Perform any C<ACTION>, using C<ARGS>. This does use the REST interface.
+
+=head2 Arguments of actions
+
+Arguments are treated as arrays with (name, value) pairs so you can do the following:
+
+    $jifty->create('Model', x => 1, x => 2, x => 3 );
+
+Some actions may require file uploads then you can use hash reference as value with
+content, filename and content_type fields. filename and content_type are optional.
+content_type by default is 'application/octeat-stream'.
+
+=head3 validate_action_args action => args
+
+Validates the given action, to check to make sure that all mandatory arguments
+are given and that no unknown arguments are given.
+
+Arguments are checked CRUD and act methods if 'strict_arguments' is set to true.
+
+You may give action as a string, which will be interpreted as the action name;
+or as an array reference for CRUD - the first element will be the action
+(create, update, or delete) and the second element will be the model name.
+
+This will throw an error or if validation succeeds, will return 1.
+
+=head2 Specifications of actions and models
+
+=head3 get_action_spec NAME
+
+Returns the action spec (which arguments it takes, and metadata about them).
+The first request for a particular action will ask the server for the spec.
+Subsequent requests will return it from the cache.
+
+=head3 get_model_spec NAME
+
+Returns the model spec (which columns it has).  The first request for a
+particular model will ask the server for the spec.  Subsequent requests will
+return it from the cache.
+
+=head2 Subclassing
+
+=head3 BUILD
 
 Each L<Net::Jifty> object will do the following upon creation:
 
@@ -696,32 +767,41 @@ Each L<Net::Jifty> object will do the following upon creation:
 
 =back
 
-=head2 login
+=head3 login
+
+This method is called automatically when each L<Net::Jifty> object is
+constructed (unless a session ID is passed in).
 
 This assumes your site is using L<Jifty::Plugin::Authentication::Password>.
 If that's not the case, override this in your subclass.
 
-This is called automatically when each L<Net::Jifty> object is constructed
-(unless a session ID is passed in).
+=head3 prompt_login_info
 
-=head2 call ACTION, ARGS
+This will ask the user for her email and password. It may do so repeatedly
+until login is successful.
+
+=head3 call ACTION, ARGS
 
 This uses the Jifty "web services" API to perform C<ACTION>. This is I<not> the
 REST interface, though it resembles it to some degree.
 
 This module currently only uses this to log in.
 
-=head2 form_url_encoded_args ARGS
+=head2 Requests helpers
 
-This will take a hash containing arguments and convert those arguments into URL encoded form. I.e., (x => 1, y => 2, z => 3) becomes:
+=head3 post URL, ARGS
 
-  x=1&y=2&z=3
+This will post C<ARGS> to C<URL>. See the documentation for C<method> about
+the format of C<URL>.
 
-These are then ready to be appened to the URL on a GET or placed into the content of a PUT.
+=head3 get URL, ARGS
 
-=head2 method METHOD, URL[, ARGS]
+This will get the specified C<URL> with C<ARGS> as query parameters. See the
+documentation for C<method> about the format of C<URL>.
 
-This will perform a GET, POST, PUT, DELETE, etc using the internal
+=head3 method METHOD, URL[, ARGS]
+
+This will perform a C<METHOD> (GET, POST, PUT, DELETE, etc) using the internal
 L<LWP::UserAgent> object.
 
 C<URL> may be a string or an array reference (which will have its parts
@@ -733,92 +813,70 @@ C<[qw/model YourApp.Model.Foo name]>.
 This will return the data structure returned by the Jifty application, or throw
 an error.
 
-=head2 post URL, ARGS
+=head3 form_url_encoded_args ARGS
 
-This will post C<ARGS> to C<URL>. See the documentation for C<method> about
-the format of C<URL>.
+This will take an array containing (name, value) argument pairs and
+convert those arguments into URL encoded form. I.e., (x => 1, y => 2, z => 3) becomes:
 
-=head2 get URL, ARGS
+  x=1&y=2&z=3
 
-This will get the specified C<URL> with C<ARGS> as query parameters. See the
-documentation for C<method> about the format of C<URL>.
+These are then ready to be appened to the URL on a GET or placed into
+the content of a PUT. However this method can not handle file uploads
+as they must be sent using 'multipart/form-date'.
 
-=head2 act ACTION, ARGS
+See also L</"form_form_data_args ARGS"|"form_form_data_args"> and
+L</"Arguments of actions">.
 
-Perform C<ACTION>, using C<ARGS>. This does use the REST interface.
+=head3 form_form_data_args ARGS
 
-=head2 create MODEL, FIELDS
+This will take an array containing (name, value) argument pairs and
+convert those arguments into L<HTTP::Message> objects ready for adding
+to a 'mulitpart/form-data' L<HTTP::Request> as parts with something like:
 
-Create a new object of type C<MODEL> with the C<FIELDS> set.
+    my $req = HTTP::Request->new( POST => $uri );
+    $req->header('Content-type' => 'multipart/form-data');
+    $req->add_part( $_ ) foreach $self->form_form_data_args( @args );
 
-=head2 delete MODEL, KEY => VALUE
+This method can handle file uploads, read more in L</"Arguments of actions">.
 
-Find some C<MODEL> where C<KEY> is C<VALUE> and delete it.
+See also L</"form_form_data_args ARGS"|"form_form_data_args"> and
+L</"Arguments of actions">.
 
-=head2 update MODEL, KEY => VALUE, FIELDS
-
-Find some C<MODEL> where C<KEY> is C<VALUE> and set C<FIELDS> on it.
-
-=head2 read MODEL, KEY => VALUE
-
-Find some C<MODEL> where C<KEY> is C<VALUE> and return it.
-
-=head2 search MODEL, FIELDS[, OUTCOLUMN]
-
-Searches for all objects of type C<MODEL> that satisfy C<FIELDS>. The optional
-C<OUTCOLUMN> defines the output column, in case you don't want the entire
-records.
-
-=head2 validate_action_args action => args
-
-Validates the given action, to check to make sure that all mandatory arguments
-are given and that no unknown arguments are given.
-
-You may give action as a string, which will be interpreted as the action name;
-or as an array reference for CRUD - the first element will be the action
-(create, update, or delete) and the second element will be the model name.
-
-This will throw an error or if validation succeeds, will return 1.
-
-=head2 get_action_spec action_name
-
-Returns the action spec (which arguments it takes, and metadata about them).
-The first request for a particular action will ask the server for the spec.
-Subsequent requests will return it from the cache.
-
-=head2 get_model_spec model_name
-
-Returns the model spec (which columns it has).  The first request for a
-particular model will ask the server for the spec.  Subsequent requests will
-return it from the cache.
-
-=head2 get_sid
-
-Retrieves the sid from the L<LWP::UserAgent> object.
-
-=head2 join_url FRAGMENTS
+=head3 join_url FRAGMENTS
 
 Encodes C<FRAGMENTS> and joins them with C</>.
 
-=head2 escape STRINGS
+=head3 escape STRINGS
 
 Returns C<STRINGS>, properly URI-escaped.
 
-=head2 load_date DATE
+=head2 Various helpers
 
-Loads C<DATE> (which must be of the form C<YYYY-MM-DD>) into a L<DateTime>
-object.
-
-=head2 email_eq EMAIL, EMAIL
+=head3 email_eq EMAIL, EMAIL
 
 Compares the two email addresses. Returns true if they're equal, false if
 they're not.
 
-=head2 is_me EMAIL
+=head3 is_me EMAIL
 
 Returns true if C<EMAIL> looks like it is the same as the current user's.
 
-=head2 load_config
+=head3 email_of ID
+
+Retrieve user C<ID>'s email address.
+
+=head3 load_date DATE
+
+Loads C<DATE> (which must be of the form C<YYYY-MM-DD>) into a L<DateTime>
+object.
+
+=head3 get_sid
+
+Retrieves the sid from the L<LWP::UserAgent> object.
+
+=head2 Working with config
+
+=head3 load_config
 
 This will return a hash reference of the user's preferences. Because this
 method is designed for use in small standalone scripts, it has a few
@@ -844,27 +902,22 @@ already in the config plus session ID, email, and password.
 
 =back
 
-=head2 config_permissions
+=head3 config_permissions
 
 This will warn about (and fix) config files being readable by group or others.
 
-=head2 read_config_file
+=head3 read_config_file
 
 This transforms the config file into a hashref. It also does any postprocessing
 needed, such as transforming localhost to 127.0.0.1 (due to an obscure bug,
 probably in HTTP::Cookies).
 
-=head2 write_config_file
+=head3 write_config_file
 
 This will write the config to disk. This is usually only done when a sid is
 discovered, but may happen any time.
 
-=head2 prompt_login_info
-
-This will ask the user for her email and password. It may do so repeatedly
-until login is successful.
-
-=head2 filter_config [DIRECTORY] -> HASH
+=head3 filter_config [DIRECTORY] -> HASH
 
 Looks at the (given or) current directory, and all parent directories, for
 files named C<< $self->filter_file >>. Each file is YAML. The contents of the
@@ -874,10 +927,6 @@ the merged hash will be returned.
 What this is used for is up to the application or subclasses. L<Net::Jifty>
 doesn't look at this at all, but it may in the future (such as for email and
 password).
-
-=head2 email_of ID
-
-Retrieve user C<ID>'s email address.
 
 =head1 SEE ALSO
 
@@ -889,7 +938,8 @@ Shawn M Moore, C<< <sartak at bestpractical.com> >>
 
 =head1 CONTRIBUTORS
 
-Andrew Sterling Hanenkamp, C<< <hanenkamp@gmail.com> >>
+Andrew Sterling Hanenkamp, C<< <hanenkamp@gmail.com> >>,
+Ruslan Zakirov E<lt>ruz@bestpractical.comE<gt>
 
 =head1 BUGS
 
