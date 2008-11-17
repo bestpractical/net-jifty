@@ -2,7 +2,7 @@
 package Net::Jifty;
 use Moose;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 use LWP::UserAgent;
 use HTTP::Request;
