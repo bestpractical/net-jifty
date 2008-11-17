@@ -270,9 +270,13 @@ sub method {
         );
 
         if (@args) {
-            my $content = $self->form_url_encoded_args(@args);
-            $req->header('Content-type' => 'application/x-www-form-urlencoded');
-            $req->content($content);
+            if ( grep ref $_, @args ) {
+                $req->header('Content-type' => 'multipart/form-data');
+                $req->add_part( $_ ) foreach $self->form_form_data_args(@args);
+            } else {
+                $req->header('Content-type' => 'application/x-www-form-urlencoded');
+                $req->content( $self->form_url_encoded_args(@args) );
+            }
         }
 
         $res = $self->ua->request($req);
