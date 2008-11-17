@@ -213,6 +213,35 @@ sub form_url_encoded_args {
     return $uri;
 }
 
+sub form_form_data_args {
+    my $self = shift;
+
+    my @res;
+    while (my ($key, $value) = splice @_, 0, 2) {
+        my $disposition = 'form-data; name="'. Encode::encode( 'MIME-Q', $key ) .'"';
+        unless ( ref $value ) {
+            push @res, HTTP::Message->new(
+                ['Content-Disposition' => $disposition ],
+                $value,
+            );
+            next;
+        }
+        
+        if ( $value->{'filename'} ) {
+            $value->{'filename'} = Encode::encode( 'MIME-Q', $value->{'filename'} );
+            $disposition .= '; filename="'. delete ( $value->{'filename'} ) .'"';
+        }
+        push @res, HTTP::Message->new(
+            [
+                'Content-Type' => $value->{'content_type'} || 'application/octet-stream',
+                'Content-Disposition' => $disposition,
+            ],
+            delete $value->{content},
+        );
+    }
+    return @res;
+}
+
 sub method {
     my $self   = shift;
     my $method = lc(shift);
