@@ -1,8 +1,8 @@
 Revision history for Net-Jifty
 
 0.09    Mon Nov 17 18:39:11 UTC-4 2008
-        added form_form_data_args method to support file uploads
-        reworked documentation
+        added form_form_data_args method to support file uploads (ruz)
+        reworked documentation (ruz)
 
 0.08    no public release
 

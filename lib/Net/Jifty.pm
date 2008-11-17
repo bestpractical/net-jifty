@@ -965,9 +965,11 @@ password).
 
 L<Jifty>, L<Net::Hiveminder>
 
-=head1 AUTHOR
+=head1 AUTHORS
 
 Shawn M Moore, C<< <sartak at bestpractical.com> >>
+
+Ruslan Zakirov, C<< <ruz at bestpractical.com> >>
 
 =head1 CONTRIBUTORS
 
