@@ -9,13 +9,11 @@ use HTTP::Request;
 use URI;
 
 use YAML;
-use Hash::Merge;
 
 use Encode;
 use Fcntl qw(:mode);
 
 use Cwd;
-use Path::Class;
 
 use Email::Address;
 
@@ -634,8 +632,10 @@ sub filter_config {
 
     my $all_config = {};
 
-    my $dir = dir(shift || getcwd);
+    require Path::Class;
+    my $dir = Path::Class::dir(shift || getcwd);
 
+    require Hash::Merge;
     my $old_behavior = Hash::Merge::get_behavior;
     Hash::Merge::set_behavior('RIGHT_PRECEDENT');
 

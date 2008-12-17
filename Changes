@@ -1,6 +1,8 @@
 Revision history for Net-Jifty
 
 0.09
+        Hash::Merge and Path::Class are now depended-upon only if you want
+            cascading directory config
 
 0.08    Mon Nov 17 18:39:11 UTC-4 2008
         added form_form_data_args method to support file uploads (ruz)
