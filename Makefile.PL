@@ -8,7 +8,6 @@ requires        'LWP::UserAgent';
 requires        'YAML';
 requires        'URI';
 requires        'Encode';
-requires        'Email::Address';
 requires        'Term::ReadKey';
 
 build_requires  'Test::More';
@@ -24,6 +23,10 @@ features(
         recommends('Hash::Merge'),
         recommends('Path::Class'),
         recommends('Cwd'),
+    ],
+    'Email address comparison' => [
+        -default => 0,
+        recommends('Email::Address'),
     ],
 );
 

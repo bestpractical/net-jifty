@@ -13,8 +13,6 @@ use YAML;
 use Encode;
 use Fcntl qw(:mode);
 
-use Email::Address;
-
 has site => (
     is            => 'rw',
     isa           => 'Str',
@@ -493,6 +491,8 @@ sub email_eq {
     return 1 if !defined($a) && !defined($b);
 
     # so, both are defined
+
+    require Email::Address;
 
     for ($a, $b) {
         $_ = 'nobody@localhost' if $_ eq 'nobody' || /<nobody>/;
