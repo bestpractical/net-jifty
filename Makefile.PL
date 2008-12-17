@@ -10,7 +10,6 @@ requires        'URI';
 requires        'Encode';
 requires        'Email::Address';
 requires        'Term::ReadKey';
-requires        'Cwd';
 
 build_requires  'Test::More';
 build_requires  'Test::MockObject';
@@ -24,6 +23,7 @@ features(
         -default => 0,
         recommends('Hash::Merge'),
         recommends('Path::Class'),
+        recommends('Cwd'),
     ],
 );
 

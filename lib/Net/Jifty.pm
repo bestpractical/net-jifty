@@ -13,8 +13,6 @@ use YAML;
 use Encode;
 use Fcntl qw(:mode);
 
-use Cwd;
-
 use Email::Address;
 
 has site => (
@@ -633,10 +631,11 @@ sub filter_config {
     my $all_config = {};
 
     require Path::Class;
-    my $dir = Path::Class::dir(shift || getcwd);
+    require Cwd;
+    my $dir = Path::Class::dir(shift || Cwd::getcwd());
 
     require Hash::Merge;
-    my $old_behavior = Hash::Merge::get_behavior;
+    my $old_behavior = Hash::Merge::get_behavior();
     Hash::Merge::set_behavior('RIGHT_PRECEDENT');
 
     while (1) {
