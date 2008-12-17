@@ -90,6 +90,7 @@ has config_file => (
     is            => 'rw',
     isa           => 'Str',
     default       => "$ENV{HOME}/.jifty",
+    predicate     => 'has_config_file',
     documentation => "The place to look for the user's config file",
 );
 
@@ -146,7 +147,7 @@ sub BUILD {
     my $self = shift;
 
     $self->load_config
-        if $self->use_config && $self->config_file;
+        if $self->use_config && $self->has_config_file;
 
     $self->login
         unless $self->sid;
