@@ -602,12 +602,16 @@ END_WELCOME
         $self->config->{email} = <STDIN>;
         chomp($self->config->{email});
 
-        require Term::ReadKey;
+        my $read_mode = eval {
+            require Term::ReadKey;
+            \&Term::ReadKey::ReadMode;
+        } || sub {};
+
         print "And your password? ";
-        Term::ReadKey::ReadMode('noecho');
+        $read_mode->('noecho');
         $self->config->{password} = <STDIN>;
         chomp($self->config->{password});
-        Term::ReadKey::ReadMode('restore');
+        $read_mode->('restore');
 
         print "\n";
 

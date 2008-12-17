@@ -7,8 +7,6 @@ requires        'Moose' => '0.50';
 requires        'LWP::UserAgent';
 requires        'YAML';
 requires        'URI';
-requires        'Encode';
-requires        'Term::ReadKey';
 
 build_requires  'Test::More';
 build_requires  'Test::MockObject';
@@ -27,6 +25,10 @@ features(
     'Email address comparison' => [
         -default => 0,
         recommends('Email::Address'),
+    ],
+    'Hiding password entry' => [
+        -default => 0,
+        recommends('Term::ReadKey'),
     ],
 );
 
