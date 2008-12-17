@@ -258,7 +258,6 @@ sub method {
         $res = $self->ua->$method($uri);
     }
     else {
-        require HTTP::Request;
         my $req = HTTP::Request->new(
             uc($method) => $uri,
         );
