@@ -5,7 +5,6 @@ use Moose;
 our $VERSION = '0.09';
 
 use LWP::UserAgent;
-use HTTP::Request;
 use URI;
 
 use YAML;
@@ -259,6 +258,7 @@ sub method {
         $res = $self->ua->$method($uri);
     }
     else {
+        require HTTP::Request;
         my $req = HTTP::Request->new(
             uc($method) => $uri,
         );
