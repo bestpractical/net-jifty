@@ -14,10 +14,10 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 4b37f8580d19a6f8ea5ec898467d0ac777f2cb45 Changes
+SHA1 b6a58ed00b772619a52836f4fa53fa98bab5332e Changes
 SHA1 13367ce99770ff913e30296bf48e76964342dc87 MANIFEST
-SHA1 7fe8b63cc5f38a4a488c4b9a9a563cd7c269e763 META.yml
-SHA1 23dac5ec2c8cd35c95344563434d00413458965d Makefile.PL
+SHA1 fbdc091857dc5fc046cb8b8c562b9f55d344ed9c META.yml
+SHA1 e53b435493d582e982a4bc4a0f3f2eb3b3bcb88c Makefile.PL
 SHA1 603bb9de29fb8cba7f13409c546750972eff645d inc/Module/AutoInstall.pm
 SHA1 ae018c4565c1277089ca8f1b28f888d95430cb7f inc/Module/Install.pm
 SHA1 0a6f29536bedea3bb94744a7d43ffe39da7e4819 inc/Module/Install/AutoInstall.pm
@@ -29,7 +29,7 @@ SHA1 9f6beaa2f4749ceb5dd0c9b0c647d0f3289c7b46 inc/Module/Install/Makefile.pm
 SHA1 bd988ba3fb7eee0ad889eadc2f5338a8d98fc2a3 inc/Module/Install/Metadata.pm
 SHA1 e9aa83f3e8b16ccfce544a90a57b63b70a497759 inc/Module/Install/Win32.pm
 SHA1 ade2ac0b0246d4d8e28fa46942e53f6925abda46 inc/Module/Install/WriteAll.pm
-SHA1 52e861cd419fb756dc2c17039402302d3f9fa703 lib/Net/Jifty.pm
+SHA1 c6ac6f2319b01c32873345544c7a97643a7b46e6 lib/Net/Jifty.pm
 SHA1 d82ea49d1cb9b8cda33214dcd82851835a44efea t/000-load.t
 SHA1 72071d94a22f5797e5f6bbf135d84d03a8eaa84b t/001-login.t
 SHA1 e8dd1626d4ac55f9917aecfc6177d3df8040c101 t/002-method.t
@@ -37,11 +37,11 @@ SHA1 987d9fb3decf47c1992a29c31c96222bfb1cc380 t/003-crud.t
 SHA1 0ed91f86dac1087841dfb7aa187f3335d19122cf t/004-search.t
 SHA1 ea5281ab3301ab40a5f16bf98954ceba2775507f t/005-validate.t
 SHA1 b9445368461c59544bce91cd2ea8bbec6c7f52b8 t/006-uploads.t
-SHA1 2711c8f993f7919e011ab8c080e8031fa53b6f4d t/lib/Net/Jifty/Test.pm
+SHA1 5772ce7104d2f41dd4bd6cbff24efa6fb4a17c61 t/lib/Net/Jifty/Test.pm
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.9 (Darwin)
 
-iEYEARECAAYFAkmc13gACgkQEi9d9xCOQEYdGACdEsAhZTvLoV08a4yd8CL7IKd5
-oIIAn3H1jNIo2+6vBwosy/kDPaDrclDt
-=ihPK
+iEYEARECAAYFAkmdz3QACgkQEi9d9xCOQEb4QwCgxsoc34PEJwHcv1xH5mXU4mpH
+u7cAnjDipFZ8Gl94uFF9jR8m/KHHqYh4
+=xsjY
 -----END PGP SIGNATURE-----
