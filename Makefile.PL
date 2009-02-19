@@ -1,36 +1,27 @@
 use inc::Module::Install;
 
-name            'Net-Jifty';
-all_from        'lib/Net/Jifty.pm';
+name 'Net-Jifty';
+all_from 'lib/Net/Jifty.pm';
 
-requires        'Moose' => '0.50';
-requires        'LWP::UserAgent';
-requires        'YAML';
-requires        'URI';
+requires 'Moose' => '0.50';
+requires 'LWP::UserAgent';
+requires 'YAML';
+requires 'URI';
 
-build_requires  'Test::More';
-build_requires  'Test::MockObject';
+build_requires 'Test::More';
+build_requires 'Test::MockObject';
 
-features(
-    'Date loading' => [
-        -default => 0,
-       recommends( 'DateTime')
-    ],
-    'Cascading directory config' => [
-        -default => 0,
-        recommends('Hash::Merge'),
-        recommends('Path::Class'),
-        recommends('Cwd'),
-    ],
-    'Email address comparison' => [
-        -default => 0,
-        recommends('Email::Address'),
-    ],
-    'Hiding password entry' => [
-        -default => 0,
-        recommends('Term::ReadKey'),
-    ],
-);
+features 'Date loading' => -default => 0,
+    'DateTime'          => 0;
+feature 'Cascading directory config' => -default => 0,
+    'Hash::Merge'                    => 0,
+    'Path::Class'                    => 0,
+    'Cwd'                            => 0;
+
+feature 'Email address comparison' => -default => 0,
+    'Email::Address'               => 0;
+feature 'Hiding password entry' => -default => 0,
+    'Term::ReadKey'             => 0;
 
 WriteAll;
 
