@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 package Net::Jifty::Test;
-use Moose;
+use Any::Moose;
 extends 'Net::Jifty';
 
 use Test::MockObject;
@@ -79,6 +79,11 @@ has '+password' => (
 sub get_sid {
     shift->sid("deadbeef");
 }
+
+
+__PACKAGE__->meta->make_immutable;
+no Any::Moose;
+
 
 1;
 

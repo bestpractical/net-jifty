@@ -1,5 +1,7 @@
 Revision history for Net-Jifty
 
+0.11    Depend on Any::Moose instead of Moose
+
 0.10
         Releng fixes
         Use a predicate for has_config_file

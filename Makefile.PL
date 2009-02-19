@@ -3,7 +3,7 @@ use inc::Module::Install;
 name 'Net-Jifty';
 all_from 'lib/Net/Jifty.pm';
 
-requires 'Moose' => '0.50';
+requires 'Any::Moose' => '0.04';
 requires 'LWP::UserAgent';
 requires 'YAML';
 requires 'URI';

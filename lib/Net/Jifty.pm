@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
 package Net::Jifty;
-use Moose;
+use Any::Moose;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use LWP::UserAgent;
 use URI;
@@ -131,14 +131,14 @@ has strict_arguments => (
 
 has action_specs => (
     is            => 'rw',
-    isa           => 'HashRef[HashRef]',
+    isa           => 'HashRef',
     default       => sub { {} },
     documentation => "The cache for action specifications",
 );
 
 has model_specs => (
     is            => 'rw',
-    isa           => 'HashRef[HashRef]',
+    isa           => 'HashRef',
     default       => sub { {} },
     documentation => "The cache for model specifications",
 );
@@ -669,7 +669,7 @@ sub email_of {
 }
 
 __PACKAGE__->meta->make_immutable;
-no Moose;
+no Any::Moose;
 
 1;
 
