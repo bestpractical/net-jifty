@@ -11,7 +11,7 @@ requires 'URI';
 build_requires 'Test::More';
 build_requires 'Test::MockObject';
 
-features 'Date loading' => -default => 0,
+feature 'Date loading' => -default => 0,
     'DateTime'          => 0;
 feature 'Cascading directory config' => -default => 0,
     'Hash::Merge'                    => 0,
@@ -22,6 +22,6 @@ feature 'Email address comparison' => -default => 0,
     'Email::Address'               => 0;
 feature 'Hiding password entry' => -default => 0,
     'Term::ReadKey'             => 0;
-
+auto_install;
 WriteAll;
 
