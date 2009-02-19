@@ -1,0 +1,47 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.55.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 4b37f8580d19a6f8ea5ec898467d0ac777f2cb45 Changes
+SHA1 13367ce99770ff913e30296bf48e76964342dc87 MANIFEST
+SHA1 7fe8b63cc5f38a4a488c4b9a9a563cd7c269e763 META.yml
+SHA1 23dac5ec2c8cd35c95344563434d00413458965d Makefile.PL
+SHA1 603bb9de29fb8cba7f13409c546750972eff645d inc/Module/AutoInstall.pm
+SHA1 ae018c4565c1277089ca8f1b28f888d95430cb7f inc/Module/Install.pm
+SHA1 0a6f29536bedea3bb94744a7d43ffe39da7e4819 inc/Module/Install/AutoInstall.pm
+SHA1 4552acdfca8b78f8015d8449e1325616259095f5 inc/Module/Install/Base.pm
+SHA1 7fb663fff161fb45882b52edd62857bf15359658 inc/Module/Install/Can.pm
+SHA1 8b1d3db746faa6faf2d967a48d3812ec1f44b4c6 inc/Module/Install/Fetch.pm
+SHA1 d7ce736cdd05d5156d379ef39cca93beeeeba828 inc/Module/Install/Include.pm
+SHA1 9f6beaa2f4749ceb5dd0c9b0c647d0f3289c7b46 inc/Module/Install/Makefile.pm
+SHA1 bd988ba3fb7eee0ad889eadc2f5338a8d98fc2a3 inc/Module/Install/Metadata.pm
+SHA1 e9aa83f3e8b16ccfce544a90a57b63b70a497759 inc/Module/Install/Win32.pm
+SHA1 ade2ac0b0246d4d8e28fa46942e53f6925abda46 inc/Module/Install/WriteAll.pm
+SHA1 52e861cd419fb756dc2c17039402302d3f9fa703 lib/Net/Jifty.pm
+SHA1 d82ea49d1cb9b8cda33214dcd82851835a44efea t/000-load.t
+SHA1 72071d94a22f5797e5f6bbf135d84d03a8eaa84b t/001-login.t
+SHA1 e8dd1626d4ac55f9917aecfc6177d3df8040c101 t/002-method.t
+SHA1 987d9fb3decf47c1992a29c31c96222bfb1cc380 t/003-crud.t
+SHA1 0ed91f86dac1087841dfb7aa187f3335d19122cf t/004-search.t
+SHA1 ea5281ab3301ab40a5f16bf98954ceba2775507f t/005-validate.t
+SHA1 b9445368461c59544bce91cd2ea8bbec6c7f52b8 t/006-uploads.t
+SHA1 2711c8f993f7919e011ab8c080e8031fa53b6f4d t/lib/Net/Jifty/Test.pm
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (Darwin)
+
+iEYEARECAAYFAkmc13gACgkQEi9d9xCOQEYdGACdEsAhZTvLoV08a4yd8CL7IKd5
+oIIAn3H1jNIo2+6vBwosy/kDPaDrclDt
+=ihPK
+-----END PGP SIGNATURE-----

@@ -1,5 +1,9 @@
 Revision history for Net-Jifty
 
+0.10
+        Releng fixes
+        Use a predicate for has_config_file
+
 0.09
         Hash::Merge and Path::Class are now depended-upon only if you want
             cascading directory config
