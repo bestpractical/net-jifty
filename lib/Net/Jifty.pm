@@ -974,10 +974,11 @@ Shawn M Moore, C<< <sartak at bestpractical.com> >>
 
 Ruslan Zakirov, C<< <ruz at bestpractical.com> >>
 
+Jesse Vincent, C<< <jesse at bestpractical.com> >>
+
 =head1 CONTRIBUTORS
 
 Andrew Sterling Hanenkamp, C<< <hanenkamp@gmail.com> >>,
-Ruslan Zakirov E<lt>ruz@bestpractical.comE<gt>
 
 =head1 BUGS
 
@@ -987,7 +988,7 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Net-Jifty>.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2007-2008 Best Practical Solutions.
+Copyright 2007-2009 Best Practical Solutions.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
