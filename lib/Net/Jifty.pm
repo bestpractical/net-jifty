@@ -20,10 +20,10 @@ has site => (
     trigger       => sub {
         # this canonicalizes localhost to 127.0.0.1 because of an (I think)
         # HTTP::Cookies bug. cookies aren't sent out for localhost.
-        my ($self, $site, $attr) = @_;
+        my ($self, $site) = @_;
 
         if ($site =~ s/\blocalhost\b/127.0.0.1/) {
-            $attr->set_value($self, $site);
+            $self->site($site);
         }
     },
 );
