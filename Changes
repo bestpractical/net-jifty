@@ -1,6 +1,10 @@
 Revision history for Net-Jifty
 
-0.11    Depend on Any::Moose instead of Moose
+0.12    Wed May 27 16:59:36 2009
+        Fix use of meta-attribute removed from triggers (Sartak)
+
+0.11
+        Depend on Any::Moose instead of Moose
 
 0.10
         Releng fixes

@@ -1,7 +1,7 @@
 package Net::Jifty;
 use Any::Moose;
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 use LWP::UserAgent;
 use URI;
