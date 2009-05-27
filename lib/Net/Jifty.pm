@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 package Net::Jifty;
 use Any::Moose;
 
