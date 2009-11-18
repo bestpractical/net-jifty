@@ -947,6 +947,13 @@ This transforms the config file into a hashref. It also does any postprocessing
 needed, such as transforming localhost to 127.0.0.1 (due to an obscure bug,
 probably in HTTP::Cookies).
 
+The config file is a L<YAML> document that looks like:
+
+    ---
+    email: you@example.com
+    password: drowssap
+    sid: 11111111111111111111111111111111
+
 =head3 write_config_file
 
 This will write the config to disk. This is usually only done when a sid is
