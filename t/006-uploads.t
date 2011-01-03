@@ -117,7 +117,7 @@ is($args->[1], 'http://jifty.org/=/ping.yml', 'correct URL');
 
     is $parts[0]->content_type, 'application/octet-stream', 'correct type of the part';
     is $parts[0]->header('Content-Disposition'),
-        'form-data; name="file"; filename="=?UTF-8?Q?=D1=82?=.bin"',
+        'form-data; name="file"; filename="=?UTF-8?Q?=D1=82=2Ebin?="',
         'checked disposition';
     is $parts[0]->content, 'stub', 'checked content';
 }
@@ -142,7 +142,7 @@ is($args->[1], 'http://jifty.org/=/ping.yml', 'correct URL');
 
     is $parts[0]->content_type, 'application/octet-stream', 'correct type of the part';
     is $parts[0]->header('Content-Disposition'),
-        'form-data; name="=?UTF-8?Q?=D1=82?="; filename="=?UTF-8?Q?=D1=82?=.bin"',
+        'form-data; name="=?UTF-8?Q?=D1=82?="; filename="=?UTF-8?Q?=D1=82=2Ebin?="',
         'checked disposition';
     is $parts[0]->content, 'stub', 'checked content';
 }

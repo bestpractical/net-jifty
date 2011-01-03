@@ -7,7 +7,7 @@ requires 'Any::Moose' => '0.04';
 requires 'LWP::UserAgent';
 requires 'YAML';
 requires 'URI';
-requires 'Encode';
+requires 'Encode' => '2.41';
 
 build_requires 'Test::More';
 build_requires 'Test::MockObject';
