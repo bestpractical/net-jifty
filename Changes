@@ -1,11 +1,12 @@
 Revision history for Net-Jifty
 
-0.13
+0.14    3 Jan 2011
+        Bump to Encode 2.41 to fix a test issue with encoded periods (Sartak)
 
-0.12    Wed May 27 16:59:36 2009
+0.12    27 May 2009
         Fix use of meta-attribute removed from triggers (Sartak)
 
-0.11
+0.11    19 Feb 2009
         Depend on Any::Moose instead of Moose
 
 0.10
